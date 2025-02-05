@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Be My Valentine?</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background-color: pink;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        #container {
+            max-width: 90%;
+        }
+        h1 {
+            font-size: 2em;
+        }
+        .btn {
+            font-size: 1.2em;
+            padding: 10px 20px;
+            margin: 10px;
+            cursor: pointer;
+            border: none;
+            border-radius: 10px;
+            display: inline-block;
+        }
+        .yes {
+            background-color: green;
+            color: white;
+        }
+        .no {
+            background-color: red;
+            color: white;
+            position: relative;
+        }
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.5em;
+            }
+            .btn {
+                font-size: 1em;
+                padding: 8px 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h1 id="question">Lerisha, will you be my Valentine? ❤️</h1>
+        <button class="btn yes" onclick="acceptLove()">Yes</button>
+        <button class="btn no" onclick="rejectLove()" id="noButton">No</button>
+    </div>
+
+    <script>
+        let counter = 0;
+        const messages = [
+            "Are you sure, Lerisha? 😢",
+            "Think again, Lerisha! 🥺",
+            "Please say yes! 😭",
+            "I won’t give up! 😤",
+            "Last chance, Lerisha! 💔"
+        ];
+
+        function acceptLove() {
+            document.getElementById("question").innerText = "Yay! I love you, Lerisha! ❤️😍";
+        }
+
+        function rejectLove() {
+            if (counter < messages.length) {
+                document.getElementById("question").innerText = messages[counter];
+                counter++;
+            } else {
+                moveNoButton();
+            }
+        }
+
+        function moveNoButton() {
+            let noBtn = document.getElementById("noButton");
+            let maxWidth = window.innerWidth - noBtn.offsetWidth;
+            let maxHeight = window.innerHeight - noBtn.offsetHeight;
+            noBtn.style.position = "absolute";
+            noBtn.style.top = Math.random() * maxHeight + "px";
+            noBtn.style.left = Math.random() * maxWidth + "px";
+        }
+    </script>
+</body>
+</html>
